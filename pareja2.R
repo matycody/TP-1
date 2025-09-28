@@ -10,7 +10,7 @@ wine <- read.csv2('winequality-red.csv', dec = ".")
 describe <- summary(wine)
 print(describe)
 
-# Matriz de correlación
+# Matriz de correlaciónn
 library(corrplot)
 corrplot(cor(wine), method = 'color', tl.cex = 0.7)
 
