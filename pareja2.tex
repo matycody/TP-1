@@ -1,0 +1,478 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={TP1 - Inferencia Estadística y Reconocimiento de Patrones},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{TP1 - Inferencia Estadística y Reconocimiento de Patrones}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{parte-de-regresiuxf3n-en-r}{%
+\section{Parte de regresión en R}\label{parte-de-regresiuxf3n-en-r}}
+
+\hypertarget{carga-de-datos-y-exploraciuxf3n}{%
+\subsection{Carga de datos y
+exploración}\label{carga-de-datos-y-exploraciuxf3n}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Borrar variables previas  rm(list = ls())}
+\CommentTok{\# Cargar el dataset}
+\NormalTok{vinos }\OtherTok{\textless{}{-}} \FunctionTok{read.csv2}\NormalTok{(}\StringTok{"winequality{-}red.csv"}\NormalTok{, }\AttributeTok{dec =} \StringTok{"."}\NormalTok{)}
+\CommentTok{\# Nombres y estructura}
+\FunctionTok{names}\NormalTok{(vinos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "fixed.acidity"        "volatile.acidity"     "citric.acid"         
+##  [4] "residual.sugar"       "chlorides"            "free.sulfur.dioxide" 
+##  [7] "total.sulfur.dioxide" "density"              "pH"                  
+## [10] "sulphates"            "alcohol"              "quality"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(vinos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+## 1           7.4             0.70        0.00            1.9     0.076
+## 2           7.8             0.88        0.00            2.6     0.098
+## 3           7.8             0.76        0.04            2.3     0.092
+## 4          11.2             0.28        0.56            1.9     0.075
+## 5           7.4             0.70        0.00            1.9     0.076
+## 6           7.4             0.66        0.00            1.8     0.075
+##   free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol
+## 1                  11                   34  0.9978 3.51      0.56     9.4
+## 2                  25                   67  0.9968 3.20      0.68     9.8
+## 3                  15                   54  0.9970 3.26      0.65     9.8
+## 4                  17                   60  0.9980 3.16      0.58     9.8
+## 5                  11                   34  0.9978 3.51      0.56     9.4
+## 6                  13                   40  0.9978 3.51      0.56     9.4
+##   quality
+## 1       5
+## 2       5
+## 3       5
+## 4       6
+## 5       5
+## 6       5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(vinos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  fixed.acidity   volatile.acidity  citric.acid    residual.sugar  
+##  Min.   : 4.60   Min.   :0.1200   Min.   :0.000   Min.   : 0.900  
+##  1st Qu.: 7.10   1st Qu.:0.3900   1st Qu.:0.090   1st Qu.: 1.900  
+##  Median : 7.90   Median :0.5200   Median :0.260   Median : 2.200  
+##  Mean   : 8.32   Mean   :0.5278   Mean   :0.271   Mean   : 2.539  
+##  3rd Qu.: 9.20   3rd Qu.:0.6400   3rd Qu.:0.420   3rd Qu.: 2.600  
+##  Max.   :15.90   Max.   :1.5800   Max.   :1.000   Max.   :15.500  
+##    chlorides       free.sulfur.dioxide total.sulfur.dioxide    density      
+##  Min.   :0.01200   Min.   : 1.00       Min.   :  6.00       Min.   :0.9901  
+##  1st Qu.:0.07000   1st Qu.: 7.00       1st Qu.: 22.00       1st Qu.:0.9956  
+##  Median :0.07900   Median :14.00       Median : 38.00       Median :0.9968  
+##  Mean   :0.08747   Mean   :15.87       Mean   : 46.47       Mean   :0.9967  
+##  3rd Qu.:0.09000   3rd Qu.:21.00       3rd Qu.: 62.00       3rd Qu.:0.9978  
+##  Max.   :0.61100   Max.   :72.00       Max.   :289.00       Max.   :1.0037  
+##        pH          sulphates         alcohol         quality     
+##  Min.   :2.740   Min.   :0.3300   Min.   : 8.40   Min.   :3.000  
+##  1st Qu.:3.210   1st Qu.:0.5500   1st Qu.: 9.50   1st Qu.:5.000  
+##  Median :3.310   Median :0.6200   Median :10.20   Median :6.000  
+##  Mean   :3.311   Mean   :0.6581   Mean   :10.42   Mean   :5.636  
+##  3rd Qu.:3.400   3rd Qu.:0.7300   3rd Qu.:11.10   3rd Qu.:6.000  
+##  Max.   :4.010   Max.   :2.0000   Max.   :14.90   Max.   :8.000
+\end{verbatim}
+
+\hypertarget{estaduxedsticas-descriptivas-y-correlaciones}{%
+\subsection{Estadísticas descriptivas y
+correlaciones}\label{estaduxedsticas-descriptivas-y-correlaciones}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Matriz de correlación y dispersión}
+\FunctionTok{ggcorr}\NormalTok{(vinos, }\AttributeTok{label =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(}\FunctionTok{cor}\NormalTok{(vinos), }\AttributeTok{method =} \StringTok{\textquotesingle{}color\textquotesingle{}}\NormalTok{, }\AttributeTok{tl.cex =} \FloatTok{0.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggpairs}\NormalTok{(vinos, }\AttributeTok{columns =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\AttributeTok{title =} \StringTok{"Matriz de correlaciones y dispersión"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(vinos}\SpecialCharTok{$}\NormalTok{quality, vinos[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      fixed.acidity volatile.acidity citric.acid residual.sugar  chlorides
+## [1,]     0.1240516       -0.3905578   0.2263725     0.01373164 -0.1289066
+##      free.sulfur.dioxide total.sulfur.dioxide    density          pH sulphates
+## [1,]         -0.05065606           -0.1851003 -0.1749192 -0.05773139 0.2513971
+##        alcohol quality
+## [1,] 0.4761663       1
+\end{verbatim}
+
+\hypertarget{divisiuxf3n-en-traintest}{%
+\subsection{División en train/test}\label{divisiuxf3n-en-traintest}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{train\_idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(vinos)), }\AttributeTok{size =} \FloatTok{0.8} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(vinos))}
+\NormalTok{train }\OtherTok{\textless{}{-}}\NormalTok{ vinos[train\_idx, ]}
+\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ vinos[}\SpecialCharTok{{-}}\NormalTok{train\_idx, ]}
+\NormalTok{X\_train }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(train[, }\SpecialCharTok{!}\NormalTok{(}\FunctionTok{names}\NormalTok{(train) }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}quality\textquotesingle{}}\NormalTok{))])}
+\NormalTok{y\_train }\OtherTok{\textless{}{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{quality}
+\NormalTok{X\_test }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(test[, }\SpecialCharTok{!}\NormalTok{(}\FunctionTok{names}\NormalTok{(test) }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}quality\textquotesingle{}}\NormalTok{))])}
+\NormalTok{y\_test }\OtherTok{\textless{}{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{quality}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{modelos-de-regresiuxf3n}{%
+\section{Modelos de regresión}\label{modelos-de-regresiuxf3n}}
+
+\hypertarget{regresiuxf3n-lineal-muxfaltiple}{%
+\subsection{Regresión lineal
+múltiple}\label{regresiuxf3n-lineal-muxfaltiple}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm\_fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(quality }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train)}
+\FunctionTok{summary}\NormalTok{(lm\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = quality ~ ., data = train)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.52213 -0.35627 -0.04738  0.44215  2.00517 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           2.342e+01  2.323e+01   1.008 0.313441    
+## fixed.acidity         2.725e-02  2.862e-02   0.952 0.341210    
+## volatile.acidity     -1.032e+00  1.353e-01  -7.625 4.77e-14 ***
+## citric.acid          -1.857e-01  1.626e-01  -1.142 0.253523    
+## residual.sugar        2.223e-02  1.623e-02   1.370 0.170964    
+## chlorides            -1.456e+00  4.849e-01  -3.002 0.002731 ** 
+## free.sulfur.dioxide   4.483e-03  2.452e-03   1.828 0.067725 .  
+## total.sulfur.dioxide -3.086e-03  8.191e-04  -3.767 0.000173 ***
+## density              -1.976e+01  2.372e+01  -0.833 0.404986    
+## pH                   -3.457e-01  2.165e-01  -1.597 0.110515    
+## sulphates             9.192e-01  1.257e-01   7.311 4.69e-13 ***
+## alcohol               2.834e-01  2.909e-02   9.741  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.6474 on 1267 degrees of freedom
+## Multiple R-squared:  0.3536, Adjusted R-squared:  0.348 
+## F-statistic: 63.02 on 11 and 1267 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lm\_fit, }\AttributeTok{newdata =}\NormalTok{ test)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}Regresión lineal múltiple:}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Regresión lineal múltiple:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}Error Cuadrático Medio (MSE):\textquotesingle{}}\NormalTok{, }\FunctionTok{mean}\NormalTok{((test}\SpecialCharTok{$}\NormalTok{quality }\SpecialCharTok{{-}}\NormalTok{ lm\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error Cuadrático Medio (MSE): 0.4264839
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}R2:\textquotesingle{}}\NormalTok{, }\FunctionTok{summary}\NormalTok{(lm\_fit)}\SpecialCharTok{$}\NormalTok{r.squared, }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R2: 0.3536435
+\end{verbatim}
+
+\hypertarget{gruxe1ficos-de-residuos-lineal}{%
+\subsubsection{Gráficos de residuos
+(lineal)}\label{gruxe1ficos-de-residuos-lineal}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{residuos }\OtherTok{\textless{}{-}} \FunctionTok{resid}\NormalTok{(lm\_fit)}
+\NormalTok{ajustados }\OtherTok{\textless{}{-}} \FunctionTok{fitted}\NormalTok{(lm\_fit)}
+\FunctionTok{hist}\NormalTok{(residuos, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Distribución de residuos"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Residuos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(ajustados, residuos, }\AttributeTok{xlab =} \StringTok{"Valores ajustados"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuos"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Residuos vs Valores ajustados"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkred"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\hypertarget{ridge}{%
+\subsection{Ridge}\label{ridge}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv\_ridge }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(X\_train, y\_train, }\AttributeTok{alpha =} \DecValTok{0}\NormalTok{)}
+\NormalTok{best\_lambda\_ridge }\OtherTok{\textless{}{-}}\NormalTok{ cv\_ridge}\SpecialCharTok{$}\NormalTok{lambda.min}
+\NormalTok{ridge\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv\_ridge, }\AttributeTok{s =}\NormalTok{ best\_lambda\_ridge, }\AttributeTok{newx =}\NormalTok{ X\_test)}
+\NormalTok{r2\_ridge }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{((y\_test }\SpecialCharTok{{-}}\NormalTok{ ridge\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{((y\_test }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(y\_test))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{Ridge:}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Ridge:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Error Cuadrático Medio (MSE): "}\NormalTok{, }\FunctionTok{mean}\NormalTok{((y\_test }\SpecialCharTok{{-}}\NormalTok{ ridge\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error Cuadrático Medio (MSE):  0.4277567
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}R2:\textquotesingle{}}\NormalTok{, r2\_ridge, }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R2: 0.3792105
+\end{verbatim}
+
+\hypertarget{gruxe1ficos-de-residuos-ridge}{%
+\subsubsection{Gráficos de residuos
+(Ridge)}\label{gruxe1ficos-de-residuos-ridge}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{residuos\_ridge }\OtherTok{\textless{}{-}}\NormalTok{ y\_test}\SpecialCharTok{{-}}\NormalTok{ridge\_pred}
+\FunctionTok{hist}\NormalTok{(residuos\_ridge, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"tomato"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Residuos del modelo penalizado"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Residuos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(ridge\_pred, residuos\_ridge, }\AttributeTok{xlab =} \StringTok{"Valores ajustados"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuos"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Residuos vs Valores ajustados (penalizado)"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\hypertarget{lasso}{%
+\subsection{LASSO}\label{lasso}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv\_lasso }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(X\_train, y\_train, }\AttributeTok{alpha =} \DecValTok{1}\NormalTok{)}
+\NormalTok{best\_lambda\_lasso }\OtherTok{\textless{}{-}}\NormalTok{ cv\_lasso}\SpecialCharTok{$}\NormalTok{lambda.min}
+\NormalTok{lasso\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv\_lasso, }\AttributeTok{s =}\NormalTok{ best\_lambda\_lasso, }\AttributeTok{newx =}\NormalTok{ X\_test)}
+\NormalTok{r2\_lasso }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{((y\_test }\SpecialCharTok{{-}}\NormalTok{ lasso\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{((y\_test }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(y\_test))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{LASSO:}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## LASSO:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Error Cuadrático Medio (MSE): "}\NormalTok{, }\FunctionTok{mean}\NormalTok{((y\_test }\SpecialCharTok{{-}}\NormalTok{ lasso\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error Cuadrático Medio (MSE):  0.430363
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}R2:\textquotesingle{}}\NormalTok{, r2\_lasso, }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R2: 0.3754281
+\end{verbatim}
+
+\hypertarget{gruxe1ficos-de-residuos-lasso}{%
+\subsubsection{Gráficos de residuos
+(LASSO)}\label{gruxe1ficos-de-residuos-lasso}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{residuos\_lasso }\OtherTok{\textless{}{-}}\NormalTok{ y\_test}\SpecialCharTok{{-}}\NormalTok{lasso\_pred}
+\FunctionTok{hist}\NormalTok{(residuos\_lasso, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"tomato"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Residuos del modelo penalizado"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Residuos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lasso\_pred, residuos\_lasso, }\AttributeTok{xlab =} \StringTok{"Valores ajustados"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuos"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Residuos vs Valores ajustados (penalizado)"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{pareja2_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\end{document}
