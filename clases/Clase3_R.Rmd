@@ -1,0 +1,64 @@
+---
+title: "Clase 3 - Ridge y Lasso"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list=ls()) # limpia el historial, removiendo todas las variables
+
+# cargo librerias, antes hay que instalarlas
+library(ISLR)
+library(plotmo)     # para graficar
+library(glmnet)
+
+# cargo datos
+# fix(Hitters)
+names(Hitters)
+dim(Hitters)
+
+# Chequeo missings
+sum(is.na(Hitters$Salary))
+
+Hitters <- na.omit(Hitters)
+sum(is.na(Hitters$Salary))
+dim(Hitters)
+
+# Ajustamos mínimos cuadrados con todas las covariables
+summary(lm(Salary~., Hitters))
+
+# Creamos la muestra de entrenamiento y de validación
+set.seed(1)
+train <- sample(c(TRUE, FALSE), nrow(Hitters), rep=TRUE)
+test <- (!train)
+
+# Creo la matriz de diseño y vector de respuestas
+x <- model.matrix(Salary~., Hitters)[,-1]
+y <- Hitters$Salary
+y.test <- y[test]
+
+# Calculo Ridge
+
+grilla <- 10^seq(10, -2, length=100)
+ridge.mod <- glmnet(x[train,], y[train], alpha=0, lambda=grilla) # por defecto estandariza variables
+
+# Veo los coeficientes
+dim(coef(ridge.mod))
+
+ridge.mod$lambda
+
+# Inspeccionamos para distintos valores de lambda
+ridge.mod$lambda[90]
+coef(ridge.mod)[,90]
+
+ridge.mod$lambda[70]
+coef(ridge.mod)[,70]
+
+ridge.mod$lambda[30]
+coef(ridge.mod)[,30]
+
+plot(ridge.mod)
+```
