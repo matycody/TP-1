@@ -1,16 +1,16 @@
-vinos <- read.csv2("winequality-red.csv",dec=".")
+
 
 # TP1 - Inferencia Estadística y Reconocimiento de Patrones
 # Parte de regresión en R
 
 # Cargar datos
-wine <- read.csv2('winequality-red.csv', dec = ".")
+vinos <- read.csv2("winequality-red.csv",dec=".")
 
 # Estadísticas descriptivas
-describe <- summary(wine)
+describe <- summary(vinos)
 print(describe)
 
-# Matriz de correlaciónn
+# Matriz de correlación
 library(corrplot)
 corrplot(cor(wine), method = 'color', tl.cex = 0.7)
 
