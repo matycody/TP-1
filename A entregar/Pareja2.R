@@ -5,6 +5,7 @@
 library(tidyverse)
 library(corrplot)
 library(glmnet)
+library(GGally)
 
 #Empezamos borrando todas las variables
 rm(list = ls())
@@ -39,13 +40,13 @@ train_idx <- sample(seq_len(nrow(vinos)), size = 0.8 * nrow(vinos))
 train <- vinos[train_idx, ]
 test <- vinos[-train_idx, ]
 
-#Creo la matriz de diseC1o y vector de respuestas 
+#Creo la matriz de diseño y vector de respuestas 
 X_train <- as.matrix(train[, !(names(train) %in% c('quality'))])
 y_train <- train$quality
 X_test <- as.matrix(test[, !(names(test) %in% c('quality'))])
 y_test <- test$quality
 
-# --- RegresiC3n lineal mC:ltiple ---
+# --- Regresión lineal mC:ltiple ---
 lm_fit <- lm(quality ~ ., data = train)
 # Hacemos un summary del modelo
 summary(lm_fit)
@@ -88,6 +89,8 @@ plot(ajustados, residuos,
      main = "Residuos vs Valores ajustados",
      pch = 20, col = "darkred")
 abline(h = 0, lty = 2, col = "gray")
+
+
 
 # --- Ridge ---
 
@@ -146,3 +149,63 @@ plot(lasso_pred, residuos_lasso,
      main = "Residuos vs Valores ajustados (penalizado)",
      pch = 20, col = "blue")
 abline(h = 0, lty = 2, col = "gray")
+
+
+# --- Comparación de residuos: Boxplot de los tres modelos ---
+residuos_df <- data.frame(
+     Residuo = c(as.numeric(residuos), as.numeric(residuos_ridge), as.numeric(residuos_lasso)),
+     Modelo = factor(
+          rep(c("Lineal", "Ridge", "LASSO"),
+                    times = c(length(residuos), length(residuos_ridge), length(residuos_lasso)))
+     )
+)
+
+boxplot(Residuo ~ Modelo, data = residuos_df,
+                    col = c("steelblue", "tomato", "orange"),
+                    main = "Comparación de residuos por modelo",
+                    ylab = "Residuos",
+                    xlab = "Modelo")
+
+# --- Boxplot 1: Valores predichos por modelo ---
+predichos_df <- data.frame(
+     Predicho = c(as.numeric(lm_pred), as.numeric(ridge_pred), as.numeric(lasso_pred)),
+     Modelo = factor(
+          rep(c("Lineal", "Ridge", "LASSO"),
+                    times = c(length(lm_pred), length(ridge_pred), length(lasso_pred)))
+     )
+)
+boxplot(Predicho ~ Modelo, data = predichos_df,
+                    col = c("steelblue", "tomato", "orange"),
+                    main = "Comparación de valores predichos por modelo",
+                    ylab = "Valor predicho",
+                    xlab = "Modelo")
+
+# --- Boxplot 2: Residuos absolutos por modelo ---
+residuos_abs_df <- data.frame(
+     ResiduoAbs = c(abs(as.numeric(residuos)), abs(as.numeric(residuos_ridge)), abs(as.numeric(residuos_lasso))),
+     Modelo = factor(
+          rep(c("Lineal", "Ridge", "LASSO"),
+                    times = c(length(residuos), length(residuos_ridge), length(residuos_lasso)))
+     )
+)
+boxplot(ResiduoAbs ~ Modelo, data = residuos_abs_df,
+                    col = c("steelblue", "tomato", "orange"),
+                    main = "Comparación de residuos absolutos por modelo",
+                    ylab = "|Residuo|",
+                    xlab = "Modelo")
+
+# --- Boxplot 3: Calidad real vs valores predichos por modelo ---
+calidad_predicho_df <- data.frame(
+     Real = rep(y_test, 3),
+     Predicho = c(as.numeric(lm_pred), as.numeric(ridge_pred), as.numeric(lasso_pred)),
+     Modelo = factor(
+          rep(c("Lineal", "Ridge", "LASSO"),
+                    each = length(y_test))
+     )
+)
+boxplot(Predicho ~ Real + Modelo, data = calidad_predicho_df,
+                    col = c("steelblue", "tomato", "orange"),
+                    main = "Valores predichos agrupados por calidad real y modelo",
+                    ylab = "Valor predicho",
+                    xlab = "Calidad real (por modelo)",
+                    las = 2)
